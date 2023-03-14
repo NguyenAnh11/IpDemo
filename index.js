@@ -6,11 +6,9 @@ const app = express()
 app.use(requestIp.mw())
 
 app.get('/', (req, res) => {
-    const { execSync } = require("child_process");
-
-    const cmd = `curl -s http://checkip.amazonaws.com || printf "0.0.0.0"`;
-    const pubIp = execSync(cmd).toString().trim();
-    res.send(req.ip.split(':').pop())
+    const { body } = await request.getAsync('http://checkip.amazonaws.com')
+    const ip = body.replace('\n', '')
+    res.json(ip)
 })
 
 app.listen(3000)
