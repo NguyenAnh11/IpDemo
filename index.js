@@ -5,7 +5,7 @@ const app = express()
 
 app.use(requestIp.mw())
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     const { body } = await request.getAsync('http://checkip.amazonaws.com')
     const ip = body.replace('\n', '')
     res.json(ip)
