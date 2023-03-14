@@ -10,13 +10,7 @@ app.get('/', (req, res) => {
 
     const cmd = `curl -s http://checkip.amazonaws.com || printf "0.0.0.0"`;
     const pubIp = execSync(cmd).toString().trim();
-    let ip = req.ip
-    if (ip.substring(0, 7) === '::ffff:') {
-        ip = ip.substring(7)
-    }
-
-    req.clientIp = ip
-    res.send(req.clientIp)
+    res.send(req.ip.split(':').pop())
 })
 
 app.listen(3000)
