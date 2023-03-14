@@ -6,7 +6,8 @@ const app = express()
 app.get('/', async (req, res) => {
     const { body } = await request.getAsync('http://checkip.amazonaws.com')
     const ip = body.replace('\n', '')
-    res.json(ip)
+    const s = req.headers['x-forwarded-for']
+    res.json(s)
 })
 
 app.listen(3000)
