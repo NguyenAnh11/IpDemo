@@ -9,4 +9,4 @@ app.get('/', async (req, res) => {
     res.json(req.ip)
 })
 
-app.listen(3000)
+app.listen(3000, '0.0.0.0')
