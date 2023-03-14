@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 
     const cmd = `curl -s http://checkip.amazonaws.com || printf "0.0.0.0"`;
     const pubIp = execSync(cmd).toString().trim();
-    res.send(req.ip)
+    res.send(req.socket.remoteAddress)
 })
 
 app.listen(3000)
