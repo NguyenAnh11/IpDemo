@@ -1,5 +1,5 @@
 const express = require('express')
-const requestIp = require('request-ip')
+const request = require('bluebird').promisifyAll(require('request'))
 
 const app = express()
 
